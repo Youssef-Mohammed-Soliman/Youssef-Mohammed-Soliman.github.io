@@ -8,13 +8,20 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <>
+  <body>
     <!-- NAV -->
     <nav>
-      <div class="nav-logo"></div>
-      <ul class="nav-links">
+      <button
+        class="nav-burger"
+        id="navBurger"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
@@ -456,6 +463,22 @@
       <img id="lightbox-img" src="" alt="" />
       <div id="lightbox-caption"></div>
     </div>
-  <script src="main.js"></script>
-</body>
+    <script>
+      const burger = document.getElementById("navBurger");
+      const navLinks = document.getElementById("navLinks");
+      burger.addEventListener("click", () => {
+        const open = navLinks.classList.toggle("open");
+        burger.classList.toggle("open", open);
+        burger.setAttribute("aria-expanded", open);
+      });
+      navLinks.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          burger.classList.remove("open");
+          burger.setAttribute("aria-expanded", false);
+        }),
+      );
+    </script>
+    <script src="main.js"></script>
+  </body>
 </html>
